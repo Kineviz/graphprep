@@ -118,6 +118,44 @@ A web-based ETL application that allows users to import structured data (initial
 - Performance with large schema graphs
 - Schema versioning and migration
 
+2.4.1 Data Modeling Guidelines
+
+**Node Modeling:**
+- **Entity Identification**: Clear identification of what constitutes a node entity
+- **Property Selection**: Choose relevant properties that add value to the graph
+- **Key Strategy**: Use stable, unique identifiers as node keys
+- **Labeling**: Use descriptive labels for node types (e.g., Person, Company, Product)
+
+**Edge Modeling:**
+- **Relationship Types**: Define meaningful relationship types with descriptive names
+- **Directionality**: Consider whether relationships are directional or bidirectional
+- **Properties**: Add properties to edges when they describe the relationship itself
+- **Cardinality**: Handle one-to-one, one-to-many, and many-to-many relationships
+
+**Best Practices:**
+- **Normalization**: Avoid redundant data in node properties
+- **Consistency**: Use consistent naming conventions across the graph
+- **Performance**: Consider query patterns when designing the schema
+- **Scalability**: Design for future growth and data volume
+
+2.4.2 Advanced Mapping Features
+
+**Smart Relationship Detection:**
+- **Foreign Key Inference**: Automatically detect potential foreign key relationships
+- **Pattern Matching**: Use column name patterns to suggest relationships
+- **Data Analysis**: Analyze data overlap to suggest connections
+- **Confidence Scoring**: Provide confidence levels for suggested relationships
+
+**Composite Key Support:**
+- **Multi-column Keys**: Support for keys composed of multiple columns
+- **Key Generation**: Automatic generation of composite keys
+- **Key Validation**: Ensure uniqueness and stability of composite keys
+
+**Relationship Properties:**
+- **Edge Attributes**: Map columns to edge properties
+- **Temporal Properties**: Handle time-based relationship properties
+- **Weighted Relationships**: Support for relationship weights and scores
+
 2.5 Schema Persistence
 
 * Export ETL schema as JSON
@@ -161,6 +199,26 @@ A web-based ETL application that allows users to import structured data (initial
 - Complex validation rule combinations
 - User-friendly error messages
 - Validation rule customization
+
+2.7 Import Optimization
+
+**Index and Constraint Management:**
+- **Automatic Indexing**: Suggest optimal indexes based on query patterns
+- **Constraint Validation**: Ensure data integrity constraints are met
+- **Performance Tuning**: Optimize import performance for target databases
+- **Batch Processing**: Support for large-scale data imports
+
+**Data Quality Assurance:**
+- **Duplicate Detection**: Identify and handle duplicate records
+- **Data Cleansing**: Automatic data cleaning and normalization
+- **Outlier Detection**: Identify and flag data outliers
+- **Completeness Checks**: Ensure required fields are populated
+
+**Import Monitoring:**
+- **Progress Tracking**: Real-time progress indicators during import
+- **Error Handling**: Graceful handling of import errors
+- **Rollback Capability**: Ability to rollback failed imports
+- **Performance Metrics**: Track import performance and optimization opportunities
 
 3. Non-Functional Requirements
 
@@ -214,7 +272,7 @@ The GraphPrep platform is designed to support multiple output formats for maximu
 
 **Extended Graph Database Support:**
 - **GraphXR**: Export format optimized for GraphXR visualization platform
-- **Neo4j**: CSV format compatible with Neo4j's LOAD CSV command
+- **Neo4j**: CSV format compatible with Neo4j's LOAD CSV command and Neo4j Data Importer
 - **UltipaGraph**: UltipaGraph format
 
 **Technical Implementation Details:**
@@ -229,6 +287,16 @@ The GraphPrep platform is designed to support multiple output formats for maximu
 - **Custom Mappings**: User-defined field mappings for specific databases
 - **Template System**: Reusable export templates for common use cases
 - **Incremental Export**: Support for delta updates and data synchronization
+
+**Neo4j-Specific Export Features:**
+- **LOAD CSV Compatibility**: Generate CSV files compatible with Neo4j's LOAD CSV command
+- **Data Importer Format**: Export in format compatible with Neo4j Data Importer UI
+- **Cypher Script Generation**: Generate Cypher scripts for data import
+- **Index and Constraint Scripts**: Generate DDL scripts for indexes and constraints
+- **Bulk Import Optimization**: Optimize for Neo4j's bulk import tools
+- **Relationship Direction**: Handle directional and bidirectional relationships
+- **Property Types**: Map data types to Neo4j property types
+- **Label Management**: Generate appropriate node labels and relationship types
 
 **Potential Challenges:**
 - Schema compatibility across different graph database paradigms
@@ -258,6 +326,57 @@ The GraphPrep platform is designed to support multiple output formats for maximu
 - **Error Recovery**: Graceful error handling with recovery suggestions
 - **Keyboard Shortcuts**: Power user shortcuts for common operations
 - **Tutorial System**: Interactive onboarding for new users
+
+5.1 Enhanced User Workflow
+
+**Step 1: Data Provision**
+- **File Upload**: Drag-and-drop interface with file validation
+- **Data Preview**: Immediate preview of uploaded data with sample rows
+- **Encoding Detection**: Automatic detection and handling of file encodings
+- **Delimiter Detection**: Smart detection of CSV delimiters
+- **File Validation**: Check for common file format issues
+
+**Step 2: Data Modeling**
+- **Entity Identification**: Help users identify what constitutes nodes in their data
+- **Relationship Discovery**: Suggest potential relationships between entities
+- **Schema Visualization**: Visual representation of the proposed graph schema
+- **Best Practices Guidance**: Provide tips for effective graph modeling
+- **Template Library**: Pre-built templates for common use cases
+
+**Step 3: Data Mapping**
+- **Column Mapping**: Map source columns to node/edge properties
+- **Key Selection**: Choose appropriate keys for nodes and relationships
+- **Type Mapping**: Map data types to target database types
+- **Transformation Rules**: Apply data transformations during mapping
+- **Validation Preview**: Preview mapped data before import
+
+**Step 4: Schema Validation**
+- **Data Quality Checks**: Validate data integrity and completeness
+- **Relationship Validation**: Ensure all relationships are properly defined
+- **Constraint Validation**: Check for constraint violations
+- **Performance Analysis**: Analyze potential performance issues
+- **Error Resolution**: Provide guidance for fixing validation errors
+
+**Step 5: Import Preparation**
+- **Target Selection**: Choose target database and format
+- **Import Strategy**: Select appropriate import method (bulk, streaming, etc.)
+- **Performance Optimization**: Optimize import settings for target database
+- **Script Generation**: Generate import scripts and DDL
+- **Documentation**: Generate documentation for the import process
+
+**Step 6: Import Execution**
+- **Progress Monitoring**: Real-time progress tracking during import
+- **Error Handling**: Graceful handling of import errors
+- **Rollback Capability**: Ability to rollback failed imports
+- **Performance Metrics**: Track import performance and optimization
+- **Success Validation**: Verify successful import and data integrity
+
+**Workflow Enhancements:**
+- **Guided Tours**: Interactive tutorials for new users
+- **Contextual Help**: Inline help and tooltips throughout the process
+- **Error Recovery**: Smart suggestions for fixing common issues
+- **Performance Insights**: Recommendations for optimizing import performance
+- **Collaboration Features**: Share and collaborate on import configurations
 
 13. UI Wireframe Overview
 
